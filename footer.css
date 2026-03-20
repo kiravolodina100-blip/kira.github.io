@@ -1,0 +1,8 @@
+.footer {
+    background-color: #a3657e; /* Темно-рожевий колір футера */
+}
+
+.footer a {
+    font-size: 0.8rem;
+    text-decoration: none;
+}
