@@ -149,3 +149,57 @@ body {
 .image-with-icons-overlay:hover .overlay-icon {
     transform: scale(1.1); /* Іконки трохи збільшуються */
 }
+.popular-flowers-section {
+    background-color: #fce4ec; 
+    padding: 80px 0;
+}
+
+/* Вирівнювання карток в один ряд */
+.flower-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрування по горизонталі */
+    justify-content: flex-start;
+    padding: 20px;
+    background: transparent; /* Або білий, якщо хочеш виділити картки */
+    transition: transform 0.3s ease;
+}
+
+.flower-card:hover {
+    transform: translateY(-10px);
+}
+
+.flower-img-main {
+    width: 140px; /* Трохи збільшив для кращого вигляду */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 25px;
+}
+
+.flower-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.flower-description {
+    font-family: 'RobotoSlab', serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    max-width: 260px; /* Обмежуємо ширину тексту для симетрії */
+    margin: 0 auto;
+}
+
+/* Фікс для заголовків секції */
+.section-title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* Ефект при наведенні на картинку */
+.image-with-icons-overlay:hover .overlay-icon {
+    transform: scale(1.1); /* Іконки трохи збільшуються */
+}
