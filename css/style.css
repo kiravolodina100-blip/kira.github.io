@@ -1,0 +1,200 @@
+@font-face {
+    font-family: 'RobotoSlab';
+    src: url('../fonts/RobotoSlab-Regular.woff') format('woff'),
+         url('../fonts/RobotoSlab-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'RobotoSlab', serif;
+    background-color: #fce4ec;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+}
+
+/* Обгортка для фонового зображення */
+.main-content-wrapper {
+    background-image: url('../images/5319253774637407027.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стилі банера (центральний текст) */
+.banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    color: #5c2a42;
+    margin-bottom: 35px;
+}
+
+.btn-more {
+    background-color: #e8b0d5;
+    color: #000;
+    padding: 15px 45px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+/* Секція категорій під банером */
+.categories-section {
+    background-color: #fceceb; /* Світло-рожевий фон як на фото */
+    border-top: 1px solid #f5d5d3;
+    border-bottom: 1px solid #f5d5d3;
+}
+
+.category-item {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px); /* Ефект при наведенні */
+}
+
+.category-item img {
+    height: 50px; /* Розмір іконок */
+    width: auto;
+    margin-bottom: 10px;
+    /* Якщо іконки чорні, можна зробити їх сірими як на фото через filter: */
+    filter: grayscale(1) opacity(0.7);
+}
+
+.category-item p {
+    font-family: 'RobotoSlab', serif;
+    font-size: 12px;
+    color: #4a4a4a;
+    margin: 0;
+    text-transform: none;
+}
+.features-section {
+    background-color: #fce4ec; /* Фон під колір body */
+    padding: 80px 0;
+}
+
+.feature-text-block {
+    padding: 40px;
+}
+
+.feature-text-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature-text-block p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.feature-image {
+    width: 100%;
+    height: auto;
+    box-shadow: 20px 20px 0px #f5d5d3; /* Декоративна тінь як на макетах */
+}
+/* ... попередні стилі (features-section, feature-text-block і т.д.) ... */
+
+/* Утиліта для відносного позиціонування */
+.pos-relative {
+    position: relative;
+    display: inline-block; /* Щоб обгортка була за розміром картинки */
+}
+
+/* Загальний клас для накладених іконок */
+.overlay-icon {
+    position: absolute;
+    z-index: 5; /* Щоб були поверх картинки */
+    transition: all 0.3s ease;
+}
+
+/* Специфічні стилі для ELLIPSE 14 (Круг) */
+.ellipse-14 {
+    width: 60px;  /* Розмір круга */
+    height: 60px;
+    background-color: #f5d5d3; /* Пастельний колір з макету */
+    border-radius: 50%;
+    
+    /* Розміщення: Наприклад, у правому нижньому куті */
+    bottom: 30px;
+    right: 30px;
+    
+    /* Декоративна тінь як на макеті */
+    box-shadow: 10px 10px 0px rgba(93, 80, 71, 0.1);
+}
+
+/* Специфічні стилі для POLYGON 1 (Геометрія) */
+.polygon-1 {
+    width: 45px; /* Розмір елемента */
+    height: auto;
+    
+    /* Розміщення: Наприклад, у лівому верхньому куті */
+    top: 30px;
+    left: 30px;
+    
+    /* Трохи прозорості та відтінок мокко, якщо картинка чорна */
+    filter: drop-shadow(5px 5px 0px rgba(93, 80, 71, 0.05)) opacity(0.8);
+}
+
+/* Ефект при наведенні на картинку */
+.image-with-icons-overlay:hover .overlay-icon {
+    transform: scale(1.1); /* Іконки трохи збільшуються */
+}
+.popular-flowers-section {
+    background-color: #fce4ec; 
+    padding: 80px 0;
+}
+
+/* Вирівнювання карток в один ряд */
+.flower-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрування по горизонталі */
+    justify-content: flex-start;
+    padding: 20px;
+    background: transparent; /* Або білий, якщо хочеш виділити картки */
+    transition: transform 0.3s ease;
+}
+
+.flower-card:hover {
+    transform: translateY(-10px);
+}
+
+.flower-img-main {
+    width: 140px; /* Трохи збільшив для кращого вигляду */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 25px;
+}
+
+.flower-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.flower-description {
+    font-family: 'RobotoSlab', serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    max-width: 260px; /* Обмежуємо ширину тексту для симетрії */
+    margin: 0 auto;
+}
+
+/* Фікс для заголовків секції */
+.section-title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    margin-bottom: 10px;
+}

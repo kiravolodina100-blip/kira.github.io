@@ -1,0 +1,67 @@
+.footer {
+    background-color: #a3657e; /* Темно-рожевий колір футера */
+}
+
+.footer a {
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+/* footer.css */
+
+.footer-main-panel {
+    background-color: #a3657e; /* Темно-рожевий відтінок з макету */
+}
+
+/* Навігація у футері */
+.footer-nav .nav-link {
+    color: #ffffff !important;
+    font-family: 'RobotoSlab', serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 0 15px !important;
+    letter-spacing: 1px;
+}
+
+.footer-nav .nav-link:hover {
+    color: #fce4ec !important;
+}
+
+/* Іконки соцмереж */
+.footer-socials a {
+    margin-left: 10px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+    transform: scale(1.1);
+}
+
+.footer-socials img {
+    width: 32px; /* Розмір круглих іконок */
+    height: auto;
+}
+
+/* Копірайт */
+.footer-bottom-bar {
+    background-color: #8e546d; /* Трохи темніший відтінок */
+}
+
+.copyright-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'RobotoSlab', serif;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 991px) {
+    .footer-nav {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .footer-socials {
+        width: 100%;
+        text-align: center;
+    }
+}
