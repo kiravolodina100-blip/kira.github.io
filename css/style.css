@@ -149,46 +149,62 @@ body {
 .image-with-icons-overlay:hover .overlay-icon {
     transform: scale(1.1); /* Іконки трохи збільшуються */
 }
+/* Секція найпопулярніших квітів */
 .popular-flowers-section {
-    background-color: #fce4ec; 
+    background-color: #fce4ec; /* Світлий фон сторінки */
     padding: 80px 0;
 }
 
-/* Вирівнювання карток в один ряд */
+/* ... попередні стилі (popular-flowers-section, section-title тощо) ... */
+
+/* Утиліта Bootstrap, яку ми використовуємо в HTML для row: 
+   d-flex align-items-stretch justify-content-center */
+
 .flower-card {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Центрування по горизонталі */
-    justify-content: flex-start;
+    flex-direction: column; /* Елементи картки (картинка, назва, текст) йдуть стовпчиком */
+    align-items: center;    /* Центруємо все по горизонталі */
+    justify-content: flex-start; /* Починаємо вміст зверху */
     padding: 20px;
-    background: transparent; /* Або білий, якщо хочеш виділити картки */
-    transition: transform 0.3s ease;
+    height: 100%;           /* Забезпечуємо однакову висоту карток */
+    background: transparent;
 }
 
-.flower-card:hover {
-    transform: translateY(-10px);
+/* ОБГОРТКА ДЛЯ КАРТИНКИ (Щоб вирівняти по низу) */
+.flower-img-container {
+    display: flex;
+    align-items: flex-end; /* КРИТИЧНО: Вирівнює картинки по нижньому краю контейнера */
+    justify-content: center; /* Центрує картинку по горизонталі */
+    height: 180px;         /* Фіксована висота для зони картинки (можна підправити) */
+    margin-bottom: 25px;   /* Відступ до назви квітки */
 }
 
 .flower-img-main {
-    width: 140px; /* Трохи збільшив для кращого вигляду */
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 25px;
+    max-height: 100%;      /* Картинка не виходитиме за межі контейнера */
+    width: auto;           /* Зберігає пропорції */
+    object-fit: contain;   /* Забезпечує правильне вписування зображення */
+}
+
+/* ... стилі для flower-name та flower-description залишаються без змін ... */
+
+.flower-card:hover .flower-img-main {
+    transform: scale(1.1);  /* Легкий ефект при наведенні */
 }
 
 .flower-name {
     font-family: 'Playfair Display', serif;
-    font-size: 26px;
+    font-size: 28px;        /* Великий елегантний шрифт */
+    font-weight: bold;
     color: #333;
     margin-bottom: 15px;
 }
 
 .flower-description {
-    font-family: 'RobotoSlab', serif;
-    font-size: 15px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
     line-height: 1.6;
     color: #4a4a4a;
-    max-width: 260px; /* Обмежуємо ширину тексту для симетрії */
+    max-width: 250px;       /* Обмежуємо ширину тексту для симетрії */
     margin: 0 auto;
 }
 
