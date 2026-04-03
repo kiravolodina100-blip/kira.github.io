@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'RobotoSlab';
-    src: url('@/assets/fonts/RobotoSlab-Regular.woff') format('woff'),
-         url('@/assets/fonts/RobotoSlab-Regular.ttf') format('truetype');
+    src: url('../fonts/RobotoSlab-Regular.woff') format('woff'),
+         url('../fonts/RobotoSlab-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -16,7 +16,7 @@ body {
 
 /* Обгортка для фонового зображення */
 .main-content-wrapper {
-    background-image: url('../images/.banner.jpg'); 
+    background-image: url('../images/5319253774637407027.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
