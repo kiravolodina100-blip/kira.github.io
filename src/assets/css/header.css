@@ -1,0 +1,96 @@
+.custom-header {
+    position: relative;
+    z-index: 1050;
+    background-color: transparent;
+    padding: 10px 0; 
+}
+
+.logo-img {
+    height: 80px; 
+    width: auto;
+    transition: height 0.3s ease;
+}
+
+.nav-right-side {
+    margin-top: 0; 
+}
+
+/* Пошук */
+.search-area {
+    width: 200px; 
+    margin-bottom: 5px;
+}
+
+.search-text {
+    font-size: 13px; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.search-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.search-underline {
+    width: 100%;
+    height: 1px;
+    background-color: #4a4a4a;
+}
+
+/* Меню */
+.header-menu .nav-link {
+    font-size: 13px;
+    color: #4a4a4a !important;
+    text-transform: uppercase;
+    padding: 5px 0 5px 15px !important; 
+}
+
+.header-menu .nav-link:hover {
+    color: #a3657e !important;
+}
+
+/* Налаштування кнопок навігації */
+.custom-nav-link {
+    font-family: 'Roboto Slab', serif !important;
+    color: #3d515e !important;
+    font-size: 15px; 
+    font-weight: 400;
+    padding: 5px 12px !important; 
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Ефект при наведенні */
+.custom-nav-link:hover {
+    color: #e499b5 !important;
+    text-decoration: none !important;
+}
+
+/* Активна сторінка */
+.nav-item.active .custom-nav-link,
+.custom-nav-link:active {
+    color: #a6657e !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 991px) {
+    .logo-img {
+        height: 60px; 
+    }
+
+    .navbar-collapse {
+        background-color: #fce4ec;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .custom-nav-link {
+        text-align: center;
+        border-bottom: 1px solid rgba(228, 153, 181, 0.2);
+        padding: 10px !important;
+    }
+}

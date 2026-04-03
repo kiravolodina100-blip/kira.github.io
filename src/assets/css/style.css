@@ -1,0 +1,438 @@
+@font-face {
+    font-family: 'RobotoSlab';
+    src: url('../fonts/RobotoSlab-Regular.woff') format('woff'),
+         url('../fonts/RobotoSlab-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'RobotoSlab', serif;
+    background-color: #fce4ec;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+}
+
+/* Обгортка для фонового зображення */
+.main-content-wrapper {
+    background-image: url('../images/5319253774637407027.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стилі банера (центральний текст) */
+.banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    color: #5c2a42;
+    margin-bottom: 35px;
+}
+
+.btn-more {
+    background-color: #e8b0d5;
+    color: #000;
+    padding: 15px 45px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+/* Секція категорій під банером */
+.categories-section {
+    background-color: #fceceb; /* Світло-рожевий фон як на фото */
+    border-top: 1px solid #f5d5d3;
+    border-bottom: 1px solid #f5d5d3;
+}
+
+.category-item {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px); /* Ефект при наведенні */
+}
+
+.category-item img {
+    height: 50px; /* Розмір іконок */
+    width: auto;
+    margin-bottom: 10px;
+    /* Якщо іконки чорні, можна зробити їх сірими як на фото через filter: */
+    filter: grayscale(1) opacity(0.7);
+}
+
+.category-item p {
+    font-family: 'RobotoSlab', serif;
+    font-size: 12px;
+    color: #4a4a4a;
+    margin: 0;
+    text-transform: none;
+}
+.features-section {
+    background-color: #fce4ec; /* Фон під колір body */
+    padding: 80px 0;
+}
+
+.feature-text-block {
+    padding: 40px;
+}
+
+.feature-text-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature-text-block p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.feature-image {
+    width: 100%;
+    height: auto;
+    box-shadow: 20px 20px 0px #f5d5d3; /* Декоративна тінь як на макетах */
+}
+/* ... попередні стилі (features-section, feature-text-block і т.д.) ... */
+
+/* Утиліта для відносного позиціонування */
+.pos-relative {
+    position: relative;
+    display: inline-block; /* Щоб обгортка була за розміром картинки */
+}
+
+/* Загальний клас для накладених іконок */
+.overlay-icon {
+    position: absolute;
+    z-index: 5; /* Щоб були поверх картинки */
+    transition: all 0.3s ease;
+}
+
+/* Специфічні стилі для ELLIPSE 14 (Круг) */
+.ellipse-14 {
+    width: 60px;  /* Розмір круга */
+    height: 60px;
+    background-color: #f5d5d3; /* Пастельний колір з макету */
+    border-radius: 50%;
+    
+    /* Розміщення: Наприклад, у правому нижньому куті */
+    bottom: 30px;
+    right: 30px;
+    
+    /* Декоративна тінь як на макеті */
+    box-shadow: 10px 10px 0px rgba(93, 80, 71, 0.1);
+}
+
+/* Специфічні стилі для POLYGON 1 (Геометрія) */
+.polygon-1 {
+    width: 45px; /* Розмір елемента */
+    height: auto;
+    
+    /* Розміщення: Наприклад, у лівому верхньому куті */
+    top: 30px;
+    left: 30px;
+    
+    /* Трохи прозорості та відтінок мокко, якщо картинка чорна */
+    filter: drop-shadow(5px 5px 0px rgba(93, 80, 71, 0.05)) opacity(0.8);
+}
+
+/* Ефект при наведенні на картинку */
+.image-with-icons-overlay:hover .overlay-icon {
+    transform: scale(1.1); /* Іконки трохи збільшуються */
+}
+/* Секція найпопулярніших квітів */
+.popular-flowers-section {
+    background-color: #fce4ec; /* Світлий фон сторінки */
+    padding: 80px 0;
+}
+
+/* ... попередні стилі (popular-flowers-section, section-title тощо) ... */
+
+/* Утиліта Bootstrap, яку ми використовуємо в HTML для row: 
+   d-flex align-items-stretch justify-content-center */
+
+.flower-card {
+    display: flex;
+    flex-direction: column; /* Елементи картки (картинка, назва, текст) йдуть стовпчиком */
+    align-items: center;    /* Центруємо все по горизонталі */
+    justify-content: flex-start; /* Починаємо вміст зверху */
+    padding: 20px;
+    height: 100%;           /* Забезпечуємо однакову висоту карток */
+    background: transparent;
+}
+
+/* ОБГОРТКА ДЛЯ КАРТИНКИ (Щоб вирівняти по низу) */
+.flower-img-container {
+    display: flex;
+    align-items: flex-end; /* КРИТИЧНО: Вирівнює картинки по нижньому краю контейнера */
+    justify-content: center; /* Центрує картинку по горизонталі */
+    height: 180px;         /* Фіксована висота для зони картинки (можна підправити) */
+    margin-bottom: 25px;   /* Відступ до назви квітки */
+}
+
+.flower-img-main {
+    max-height: 100%;      /* Картинка не виходитиме за межі контейнера */
+    width: auto;           /* Зберігає пропорції */
+    object-fit: contain;   /* Забезпечує правильне вписування зображення */
+}
+
+/* ... стилі для flower-name та flower-description залишаються без змін ... */
+
+.flower-card:hover .flower-img-main {
+    transform: scale(1.1);  /* Легкий ефект при наведенні */
+}
+
+.flower-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;        /* Великий елегантний шрифт */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.flower-description {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    max-width: 250px;       /* Обмежуємо ширину тексту для симетрії */
+    margin: 0 auto;
+}
+
+/* Фікс для заголовків секції */
+.section-title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+/* Додатково для другої сторінки */
+.darker-bg {
+    background-color: rgba(255, 255, 255, 0.9); /* Щоб меню було видно на білому фоні */
+    border-bottom: 1px solid #fce4ec;
+}
+
+.art-banner img {
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.art-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    color: #3d515e;
+    margin-top: 50px;
+}
+
+.pink-divider {
+    color: #e499b5;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.art-quote-block {
+    background-color: #fce4ec;
+    border-left: 6px solid #e499b5;
+    padding: 25px 40px;
+    margin: 40px 0;
+}
+
+.column-line {
+    width: 100%;
+    height: 1px;
+    background-color: #3d515e;
+    margin: 10px 0 20px 0;
+}
+.product-card-link {
+    text-decoration: none !important; /* Прибирає підкреслення */
+    color: inherit !important;       /* Зберігає колір тексту */
+    display: block;                  /* Робить все посилання блоком */
+    transition: transform 0.3s ease; /* Додає плавність ефекту */
+}
+
+.product-card-link:hover {
+    transform: translateY(-5px);    /* Легке підняття картки при наведенні */
+}
+
+.product-card-link:hover .bg-white {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important; /* Посилення тіні при наведенні */
+}
+/* Стилі для сторінки товару */
+.char-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #3d515e;
+    margin-bottom: 10px;
+}
+
+.char-title-border {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #a6657e; /* Темно-рожевий колір заголовків розділів */
+    border-bottom: 1px solid #a6657e;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.char-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+.char-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.char-list li {
+    font-family: 'Roboto Slab', serif;
+    font-size: 13px;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Маркер списку у вигляді рожевої крапки */
+.char-list li::before {
+    content: "•";
+    color: #e499b5;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.section-subtitle-small {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    color: #a6657e;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.btn-download:hover {
+    background-color: #e499b5;
+    color: white !important;
+}
+/* стилі для форми контактів */
+.contact-form label {
+    font-size: 13px;
+    color: #3d515e;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.contact-form .form-control {
+    border-radius: 2px; 
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.contact-form .form-control:focus {
+    border-color: #e499b5; 
+    box-shadow: 0 0 0 0.2rem rgba(228, 153, 181, 0.25);
+}
+
+.contact-form select.form-control {
+    height: 43px; 
+}
+.darker-footer-bg {
+    background-color: #a6657e; 
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #b55f9a !important; 
+    cursor: pointer;
+}
+
+/* КАРТКИ ТОВАРІВ */
+.tomatoItem {
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.tomatoItem:hover {
+    transform: translateY(-5px);
+}
+
+.tomatoImg {
+    width: 100%;
+    height: 250px; 
+    overflow: hidden;
+    border-radius: 12px; /* Більш закруглені кути для м'якості */
+    background-color: #fff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.tomatoImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tomatoInfo {
+    padding: 15px;
+    text-align: center;
+}
+
+.tomatoInfo b {
+    color: #3d515e !important;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.tomatoInfo a {
+    color: #e499b5 !important;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.tomatoInfo a:hover {
+    border-bottom: 1px solid #e499b5;
+}
+
+/* КНОПКИ ДЛЯ СТОРІНКИ ТОВАРУ */
+.btn-cart-action {
+    border-radius: 25px;
+    padding: 12px 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-add-to-cart {
+    border: 2px solid #e499b5;
+    color: #e499b5;
+    background: transparent;
+}
+
+.btn-add-to-cart:hover {
+    background: #e499b5;
+    color: white;
+}
+
+.btn-go-to-cart {
+    background-color: #e499b5;
+    color: white !important;
+    border: none;
+}

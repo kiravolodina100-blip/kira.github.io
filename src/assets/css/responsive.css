@@ -1,0 +1,115 @@
+@media (max-width: 1920px) {
+    .container { max-width: 1400px; }
+}
+
+@media (max-width: 1480px) {
+    .container { max-width: 1200px; }
+    .art-main-title { font-size: 36px; }
+}
+
+/* Планшети (IPad та подібні - до 1024px) */
+@media (max-width: 1024px) {
+    /* Перетворюємо меню на мобільне */
+    .header-menu {
+        display: none; /* Сховати звичайне меню для створення бургер-меню пізніше */
+    }
+    
+    .nav-right-side {
+        align-items: center !important;
+    }
+
+    .art-column {
+        margin-bottom: 30px;
+    }
+}
+
+/* Мобільні пристрої (IPhone X, 8, 7, 6 - до 768px) */
+@media (max-width: 768px) {
+    .product-title { font-size: 28px !important; }
+    
+    .flower-card {
+        flex-direction: column !important; /* На мобілках картинка зверху, текст знизу */
+        text-align: center !important;
+    }
+
+    .contact-banner img, .art-banner img {
+        height: 250px !important;
+    }
+    
+    /* Форма контактів в одну колонку */
+    .contact-form .row [class*="col-"] {
+        padding: 0 15px !important;
+    }
+}
+
+/* Найменші екрани (IPhone 4 - 320px) */
+@media (max-width: 320px) {
+    .logo-img { height: 50px; }
+    .section-title-main { font-size: 24px; }
+    .footer-links span { display: block; margin: 5px 0; }
+}
+/* Стилізація кнопки бургера */
+.navbar-toggler {
+    border-color: #e499b5 !important; /* Рожевий колір рамки */
+    outline: none !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3Base path fill='%23e499b5' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+    /* Це робить полоски бургера рожевими */
+}
+
+/* Адаптація випадаючого меню для мобільних */
+@media (max-width: 1024px) {
+    .navbar-collapse {
+        background-color: #fce4ec; /* Фон під колір сайту */
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 15px;
+        box-shadow: 0 5px 15px rgba(228, 153, 181, 0.2);
+    }
+
+    .nav-link {
+        padding: 10px 0 !important;
+        border-bottom: 1px solid rgba(228, 153, 181, 0.1);
+        text-align: center;
+        color: #3d515e !important;
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+}
+/* Повертаємо стилі для посилань у хедері */
+.custom-nav-link {
+    font-family: 'Roboto Slab', serif !important;
+    color: #3d515e !important; /* Ваш темно-сірий колір */
+    font-size: 16px;
+    padding: 10px 15px !important;
+    transition: color 0.3s ease;
+}
+
+/* Ефект при наведенні */
+.custom-nav-link:hover {
+    color: #e499b5 !important; /* Ваш фірмовий рожевий */
+}
+
+/* Стиль для активної сторінки */
+.nav-item.active .custom-nav-link, 
+.custom-nav-link.font-weight-bold {
+    color: #a6657e !important; /* Темніший рожевий для активного пункту */
+    border-bottom: 2px solid #e499b5;
+}
+
+/* Виправлення для випадаючого меню на мобілках */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        z-index: 9999;
+        position: relative;
+        background: #fce4ec; /* Рожевий фон меню */
+    }
+    .custom-nav-link {
+        text-align: right;
+        border-bottom: 1px solid rgba(228, 153, 181, 0.2);
+    }
+}
