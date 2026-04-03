@@ -90,16 +90,15 @@
     </div>
 
     <div v-if="orderPlaced" class="text-center py-5">
-      <div class="alert alert-success p-5 success-card">
-        <h2 class="mb-3">Дякуємо за замовлення, {{ form.name }}!</h2>
-        <p class="lead">Сума до оплати: <strong>{{ total }} грн</strong></p>
-        <p>Менеджер зв'яжеться з вами найближчим часом.</p>
-        <router-link to="/" class="btn btn-dark mt-4 px-5 rounded-pill">На головну</router-link>
-      </div>
-    </div>
+  <div class="alert alert-success p-5 success-card">
+    <h2 class="mb-3">Дякуємо за замовлення, {{ form.name }}!</h2>
+    <p class="lead">Сума до оплати: <strong>{{ finalTotal }} грн</strong></p>
+    <p>Менеджер зв'яжеться з вами найближчим часом.</p>
+    <router-link to="/" class="btn btn-dark mt-4 px-5 rounded-pill">На головну</router-link>
+  </div>
+</div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'Cart',
@@ -107,6 +106,7 @@ export default {
     return {
       cartItems: [],
       orderPlaced: false,
+      finalTotal: 0, // Додаємо нову змінну для фіксації суми
       form: { 
         name: '', 
         city: '', 
@@ -118,16 +118,9 @@ export default {
   },
   computed: {
     total() {
-      // Перетворюємо ціну на число для коректного підрахунку
+      // Цей computed працює тільки поки кошик не очищений
       return this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
     }
-  },
-  mounted() {
-    this.loadCart();
-    // Слухаємо оновлення з інших компонентів (наприклад, видалення або додавання)
-    window.addEventListener('cart-updated', this.loadCart);
-    // Слухаємо зміни в інших вкладках
-    window.addEventListener('storage', this.loadCart);
   },
   methods: {
     loadCart() {
@@ -139,24 +132,31 @@ export default {
       }
     },
     removeItem(id) {
-      // Фільтруємо масив
       this.cartItems = this.cartItems.filter(item => item.id !== id);
-      // Зберігаємо оновлений кошик
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
-      // Посилаємо сигнал Хедеру, щоб він оновив лічильник
       window.dispatchEvent(new CustomEvent('cart-updated'));
     },
     makeOrder() {
-      // Фіксуємо суму перед очищенням для відображення в повідомленні (опціонально)
+      // 1. ПЕРЕД очищенням фіксуємо поточну суму
+      this.finalTotal = this.total; 
+      
+      // 2. Показуємо повідомлення про успіх
       this.orderPlaced = true;
-      // Очищаємо кошик в пам'яті
+      
+      // 3. Очищаємо дані
       localStorage.removeItem('cart');
-      // Оновлюємо лічильник у Хедері (стане 0)
+      this.cartItems = []; // Очищаємо масив у пам'яті компонента
+      
+      // 4. Оновлюємо лічильник у Хедері
       window.dispatchEvent(new CustomEvent('cart-updated'));
     }
   },
+  mounted() {
+    this.loadCart();
+    window.addEventListener('cart-updated', this.loadCart);
+    window.addEventListener('storage', this.loadCart);
+  },
   beforeUnmount() {
-    // Обов'язково прибираємо слухачів
     window.removeEventListener('cart-updated', this.loadCart);
     window.removeEventListener('storage', this.loadCart);
   }
