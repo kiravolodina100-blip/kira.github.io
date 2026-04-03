@@ -11,12 +11,12 @@
     <div class="row align-items-center">
       <div class="col-lg-6 text-center mb-4 mb-lg-0">
         <div class="product-img-wrapper shadow">
-          <img 
-            :src="'/kira.github.io/images/' + product.image" 
-            :alt="product.title" 
-            class="img-fluid main-product-img"
-            @error="(e) => e.target.src = 'images/' + product.image"
-          >
+        <img 
+        :src="'images/' + product.image" 
+        :alt="product.title" 
+        class="img-fluid main-product-img"
+        @error="(e) => e.target.src = 'images/' + product.image"
+        >
         </div>
       </div>
 
@@ -34,7 +34,7 @@
         <hr class="search-underline my-4">
         
         <button @click="addToCart" class="btn btn-add-cart w-100 py-3">
-          ДОДАТИ У КОШИК 🛒
+          ДОДАТИ У КОШИК 
         </button>
       </div>
     </div>
@@ -65,6 +65,7 @@ export default {
       this.product = allProducts.find(p => p.id === productId);
     },
     addToCart() {
+      console.log("Кнопка натиснута! Товар:", this.product);
       if (!this.product) return;
 
       let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];

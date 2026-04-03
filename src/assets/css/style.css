@@ -1,11 +1,9 @@
 @font-face {
     font-family: 'RobotoSlab';
-    src: url('../fonts/RobotoSlab-Regular.woff') format('woff'),
-         url('../fonts/RobotoSlab-Regular.ttf') format('truetype');
+    src: url('../fonts/RobotoSlab-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
 body {
     font-family: 'RobotoSlab', serif;
     background-color: #fce4ec;

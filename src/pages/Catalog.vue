@@ -58,7 +58,6 @@ export default {
     },
    addToCart(flower) {
   try {
-    // 1. Отримуємо дані, якщо вони є і це валідний масив
     let cart = [];
     const data = localStorage.getItem('cart');
     
@@ -67,11 +66,9 @@ export default {
         cart = JSON.parse(data);
         if (!Array.isArray(cart)) cart = []; 
       } catch (e) {
-        cart = []; // Якщо в сховищі сміття — скидаємо до пустого масиву
+        cart = []; 
       }
     }
-
-    // 2. Перевіряємо, чи немає вже такого товару
     const exists = cart.find(item => item.id === flower.id);
     
     if (!exists) {
@@ -81,11 +78,7 @@ export default {
         price: flower.price,
         image: flower.image
       });
-      
-      // 3. Зберігаємо назад у JSON
       localStorage.setItem('cart', JSON.stringify(cart));
-      
-      // 4. Оновлюємо лічильник у хедері через подію
       window.dispatchEvent(new CustomEvent('cart-updated'));
       alert(`${flower.title} додано до кошика!`);
     } else {

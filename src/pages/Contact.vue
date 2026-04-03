@@ -136,17 +136,13 @@ export default {
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
       window.dispatchEvent(new CustomEvent('cart-updated'));
     },
-makeOrder() {
-      const finalAmount = this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
-      this.finalTotal = finalAmount;
-      this.orderPlaced = true;
-
-      setTimeout(() => {
-        localStorage.removeItem('cart');
-        this.cartItems = [];
-        window.dispatchEvent(new CustomEvent('cart-updated'));
-      }, 100);
-    } 
+    makeOrder() {
+  const finalAmount = this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
+  this.finalTotal = finalAmount;
+  this.orderPlaced = true;
+  localStorage.removeItem('cart');
+  window.dispatchEvent(new CustomEvent('cart-updated'));
+}
   }, 
 
   mounted() { 
