@@ -1,10 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
-// Імпорт компонентів сторінок
 import Home from '../pages/Home.vue'
 import Catalog from '../pages/Catalog.vue'
 import Contact from '../pages/Contact.vue'
-import ProductDetail from '../pages/ProductDetail.vue' // Додаємо нову сторінку
+import ProductDetail from '../pages/ProductDetail.vue'
 
 const routes = [
   { 
@@ -23,19 +22,16 @@ const routes = [
     component: Contact 
   },
   { 
-    // Динамічний маршрут для деталей товару
     path: '/product/:id', 
     name: 'ProductDetail',
     component: ProductDetail,
-    props: true // Дозволяє передавати :id як prop у компонент
+    props: true 
   }
 ]
 
 const router = createRouter({
-  // Використовуємо історію браузера
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
-  // Прокрутка вгору при переході на нову сторінку
   scrollBehavior() {
     return { top: 0 }
   }

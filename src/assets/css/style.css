@@ -16,7 +16,7 @@ body {
 
 /* Обгортка для фонового зображення */
 .main-content-wrapper {
-    background-image: url('../images/5319253774637407027.jpg'); 
+    background-image: url('../images/.banner.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

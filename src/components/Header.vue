@@ -1,60 +1,80 @@
 <template>
   <header class="custom-header">
     <div class="container-fluid px-md-5">
-      <nav class="navbar navbar-expand-lg navbar-light p-0 d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center flex-wrap">
         
-        <router-link class="navbar-brand logo" to="/">
-          <img src="/images/Picsart_26-03-17_23-30-32-733 1.png" alt="Soft Petal" class="logo-img">
-        </router-link>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#softPetalNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="softPetalNav">
-          <div class="nav-right-side ml-auto d-flex flex-column align-items-end">
-            
-            <div class="search-area d-none d-lg-block">
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="search-text text-muted small">Пошук</span>
-                <img src="/images/search_icon.png" alt="Пошук" class="search-icon">
-              </div>
-              <div class="search-underline"></div>
-            </div>
-
-            <ul class="navbar-nav header-menu mt-2">
-              <li class="nav-item">
-                <router-link class="nav-link custom-nav-link" to="/" exact-active-class="active">Головна</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link custom-nav-link" to="/about">Про нас</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link custom-nav-link" to="/catalog" active-class="active">Товари</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link custom-nav-link" to="/management">Менеджмент</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link custom-nav-link" to="/contact" active-class="active">Кошик</router-link>
-              </li>
-            </ul>
-          </div>
+        <div class="logo-area">
+          <router-link to="/">
+          <img :src="'/kira.github.io/images/logo.png'" alt="Soft Petal" class="logo-img">
+          </router-link>
         </div>
 
-      </nav>
+        <div class="nav-right-side">
+          <div class="search-area d-flex align-items-center ms-auto">
+            <span class="search-text me-2">Пошук</span>
+          <img :src="'/kira.github.io/images/search_icon.png'" alt="Search" class="search-icon">
+          </div>
+          <div class="search-underline"></div>
+
+          <nav class="navbar navbar-expand-lg p-0 mt-2">
+            <div class="header-menu">
+              <ul class="navbar-nav shadow-none">
+                <li class="nav-item">
+                  <router-link class="nav-link custom-nav-link" to="/">Головна</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-link custom-nav-link" to="/catalog">Продукція</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-link custom-nav-link cart-wrapper" to="/contact">
+                    Кошик
+                    <span v-if="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link custom-nav-link" href="#">Про нас</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data() {
+    return {
+      cartCount: 0
+    }
+  },
+  mounted() {
+    this.updateCount();
+    window.addEventListener('cart-updated', this.updateCount);
+    window.addEventListener('storage', this.updateCount);
+  },
+  methods: {
+    updateCount() {
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        this.cartCount = cart.length;
+      } catch (e) {
+        this.cartCount = 0;
+      }
+    }
+  },
+  beforeUnmount() {
+    window.removeEventListener('cart-updated', this.updateCount);
+    window.removeEventListener('storage', this.updateCount);
+  }
 }
 </script>
 
 <style scoped>
-/* ПІДКЛЮЧЕННЯ ВАШИХ СТИЛІВ */
 .custom-header {
     position: relative;
     z-index: 1050;
@@ -70,25 +90,27 @@ export default {
 
 .nav-right-side {
     margin-top: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-/* Пошук */
 .search-area {
     width: 200px; 
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .search-text {
     font-size: 13px; 
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: 'Roboto Slab', serif;
+    color: #4a4a4a;
 }
 
 .search-icon {
     width: 16px;
     height: 16px;
-    opacity: 0.6;
 }
 
 .search-underline {
@@ -97,15 +119,6 @@ export default {
     background-color: #4a4a4a;
 }
 
-/* Меню */
-.header-menu .nav-link {
-    font-size: 13px;
-    color: #4a4a4a !important;
-    text-transform: uppercase;
-    padding: 5px 0 5px 15px !important; 
-}
-
-/* Налаштування кнопок навігації */
 .custom-nav-link {
     font-family: 'Roboto Slab', serif !important;
     color: #3d515e !important;
@@ -114,7 +127,6 @@ export default {
     padding: 5px 12px !important; 
     position: relative;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .custom-nav-link:hover {
@@ -122,33 +134,28 @@ export default {
     text-decoration: none !important;
 }
 
-/* Активна сторінка (Vue автоматично додає клас .active через router-link) */
-.active {
-    color: #a3657e !important;
-    font-weight: 700 !important;
+.cart-wrapper {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+    background-color: #d88fa5;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
 }
 
 @media (max-width: 991px) {
     .logo-img {
         height: 60px; 
     }
-
-    .navbar-collapse {
-        background-color: #fce4ec;
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
     .nav-right-side {
-        align-items: center !important;
-    }
-
-    .custom-nav-link {
-        text-align: center;
-        border-bottom: 1px solid rgba(228, 153, 181, 0.2);
-        padding: 10px !important;
+        align-items: center;
         width: 100%;
     }
 }

@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <img src="/images/image 1.png" class="img-fluid rounded shadow" alt="Букет">
+            <img :src="'/kira.github.io/images/image 1.png'" class="img-fluid rounded shadow" alt="Букет">
           </div>
         </div>
 
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="col-md-6 order-md-1">
-            <img src="/images/image 2.png" class="img-fluid rounded shadow" alt="Інтер'єр">
+            <img :src="'/kira.github.io/images/image 2.png'" class="img-fluid rounded shadow" alt="Інтер'єр">
           </div>
         </div>
       </div>
@@ -74,31 +74,17 @@ export default {
   name: 'Home',
   data() {
     return {
-      categories: [
-        { name: 'Тюльпани', img: '/images/tulips.png' },
-        { name: 'Троянди', img: '/images/roses.png' },
-        { name: 'Півонії', img: '/images/peonies.png' },
-        { name: 'Лілії', img: '/images/lilies.png' },
-        { name: 'Сухоцвіти', img: '/images/dried.png' },
-        { name: 'Букети', img: '/images/bouquets.png' },
-        { name: 'Композиції', img: '/images/compositions.png' }
+categories: [
+        { name: 'Тюльпани', img: '/kira.github.io/images/tulips.png' },
+        { name: 'Троянди', img: '/kira.github.io/images/roses.png' },
+        { name: 'Півонії', img: '/kira.github.io/images/peonies.png' },
+        { name: 'Лілії', img: '/kira.github.io/images/lilies.png' },
+        { name: 'Букети', img: '/kira.github.io/images/bouquets.png' }
       ],
       popular: [
-        { 
-          name: 'Троянди', 
-          img: '/images/rose_icon.png', 
-          desc: 'Класична елегантність у сучасному прочитанні.' 
-        },
-        { 
-          name: 'Тюльпани', 
-          img: '/images/tulip_icon.png', 
-          desc: 'Символ весняної свіжості та чистих ліній.' 
-        },
-        { 
-          name: 'Півонія', 
-          img: '/images/peony_icon.png', 
-          desc: 'Ніжність у сотнях пелюсток для особливих подій.' 
-        }
+        { name: 'Троянди', img: '/kira.github.io/images/rose_icon.png', desc: 'Класична елегантність.' },
+        { name: 'Тюльпани', img: '/kira.github.io/images/tulip_icon.png', desc: 'Символ свіжості.' },
+        { name: 'Півонія', img: '/kira.github.io/images/peony_icon.png', desc: 'Ніжність пелюсток.' }
       ]
     }
   }

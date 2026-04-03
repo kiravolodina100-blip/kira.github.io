@@ -16,7 +16,7 @@
           <tbody>
             <tr v-for="item in cartItems" :key="item.id">
               <td>
-                <img :src="'/images/' + item.image" width="60" class="rounded shadow-sm" style="object-fit: cover; height: 60px;">
+                <img :src="'images/' + item.image" width="60" class="rounded shadow-sm" style="object-fit: cover; height: 60px;" @error="(e) => e.target.src = 'images/' + item.image">
               </td>
               <td class="font-weight-bold align-middle">{{ item.title }}</td>
               <td class="align-middle">{{ item.price }} грн</td>
@@ -70,7 +70,7 @@
             <div class="row align-items-center mt-4">
               <div class="col-md-7 d-flex align-items-center mb-3 mb-md-0">
                 <label class="mr-3 mb-0">Введіть код:</label>
-                <img src="/images/image 12.jpg" alt="captcha" class="mr-2 captcha-img">
+                <img src="/images/image 12.jpg" alt="captcha" class="me-2 captcha-img">
                 <input type="text" class="form-control" style="width: 100px;" required>
               </div>
               <div class="col-md-5 text-right">
@@ -102,46 +102,69 @@
 
 <script>
 export default {
+  name: 'Cart',
   data() {
     return {
       cartItems: [],
       orderPlaced: false,
-      form: {
-        name: '',
-        city: '',
-        phone: '',
-        email: '',
-        message: ''
+      form: { 
+        name: '', 
+        city: '', 
+        phone: '', 
+        email: '', 
+        message: '' 
       }
     }
   },
   computed: {
     total() {
+      // Перетворюємо ціну на число для коректного підрахунку
       return this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
     }
   },
   mounted() {
     this.loadCart();
+    // Слухаємо оновлення з інших компонентів (наприклад, видалення або додавання)
+    window.addEventListener('cart-updated', this.loadCart);
+    // Слухаємо зміни в інших вкладках
+    window.addEventListener('storage', this.loadCart);
   },
   methods: {
     loadCart() {
-      const saved = localStorage.getItem('cart');
-      this.cartItems = saved ? JSON.parse(saved) : [];
+      try {
+        const saved = localStorage.getItem('cart');
+        this.cartItems = saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        this.cartItems = [];
+      }
     },
     removeItem(id) {
+      // Фільтруємо масив
       this.cartItems = this.cartItems.filter(item => item.id !== id);
+      // Зберігаємо оновлений кошик
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      // Посилаємо сигнал Хедеру, щоб він оновив лічильник
+      window.dispatchEvent(new CustomEvent('cart-updated'));
     },
     makeOrder() {
-      // Імітація відправки замовлення
+      // Фіксуємо суму перед очищенням для відображення в повідомленні (опціонально)
       this.orderPlaced = true;
+      // Очищаємо кошик в пам'яті
       localStorage.removeItem('cart');
+      // Оновлюємо лічильник у Хедері (стане 0)
+      window.dispatchEvent(new CustomEvent('cart-updated'));
     }
+  },
+  beforeUnmount() {
+    // Обов'язково прибираємо слухачів
+    window.removeEventListener('cart-updated', this.loadCart);
+    window.removeEventListener('storage', this.loadCart);
   }
 }
 </script>
 
 <style scoped>
+/* ПІДКЛЮЧЕННЯ ВАШИХ СТИЛІВ ПР #8 */
 .page-title { font-family: 'Playfair Display', serif; color: #3d515e; font-weight: bold; }
 .cart-thead { background-color: #f8f4f2; color: #5d2e46; }
 .total-text { color: #3d515e; }
@@ -186,6 +209,8 @@ export default {
   color: #e499b5; 
   font-weight: bold; 
   border-radius: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
 }
 
 .captcha-img { height: 40px; border: 1px solid #ddd; border-radius: 4px; }
