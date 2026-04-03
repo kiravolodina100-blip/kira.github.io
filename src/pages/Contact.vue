@@ -106,7 +106,7 @@ export default {
     return {
       cartItems: [],
       orderPlaced: false,
-      finalTotal: 0, // Додаємо нову змінну для фіксації суми
+      finalTotal: 0,
       form: { 
         name: '', 
         city: '', 
@@ -114,14 +114,14 @@ export default {
         email: '', 
         message: '' 
       }
-    }
-  },
+    };
+  }, // Закрили data і поставили кому
   computed: {
     total() {
-      // Цей computed працює тільки поки кошик не очищений
+      if (!this.cartItems || this.cartItems.length === 0) return 0;
       return this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
     }
-  },
+  }, // Закрили computed і поставили кому
   methods: {
     loadCart() {
       try {
@@ -137,20 +137,16 @@ export default {
       window.dispatchEvent(new CustomEvent('cart-updated'));
     },
     makeOrder() {
-      // 1. ПЕРЕД очищенням фіксуємо поточну суму
-      this.finalTotal = this.total; 
+      // Надійно фіксуємо суму перед очищенням
+      const currentTotal = this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
+      this.finalTotal = currentTotal;
       
-      // 2. Показуємо повідомлення про успіх
       this.orderPlaced = true;
-      
-      // 3. Очищаємо дані
       localStorage.removeItem('cart');
-      this.cartItems = []; // Очищаємо масив у пам'яті компонента
-      
-      // 4. Оновлюємо лічильник у Хедері
+      this.cartItems = []; 
       window.dispatchEvent(new CustomEvent('cart-updated'));
     }
-  },
+  }, // Закрили methods і поставили кому
   mounted() {
     this.loadCart();
     window.addEventListener('cart-updated', this.loadCart);
